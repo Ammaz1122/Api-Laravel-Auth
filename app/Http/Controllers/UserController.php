@@ -22,7 +22,7 @@ class UserController extends Controller
             'password' =>Hash::make($request->password),
         ]);
 
-        $token = $user->createToken('mytoken')->plainTextToken;
+        $token = $user->createToken($request->name)->plainTextToken;
 
    // dd($token);
         return response([

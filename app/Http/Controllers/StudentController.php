@@ -103,9 +103,9 @@ class StudentController extends Controller
         return $delete;
     }
 
-    public function Search($city)
+    public function Search($name)
     {
-        $search = Student::where('city','LIKE',"%$city%")->get();
+        $search = Student::where('name','LIKE',"%$name%")->get();
         return $search;
     }
 
