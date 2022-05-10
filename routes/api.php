@@ -42,7 +42,7 @@ use App\Http\Controllers\UserController;
         Route::post('/students',[StudentController::class,'store']);
         Route::put('/students/{id}',[StudentController::class,'update']);
         Route::delete('/students/{id}',[StudentController::class,'destroy']);
-        Route::get('/students/search/{city}',[StudentController::class,'Search']);
+        
         
         Route::post('/logout',[UserController::class,'logout']);
 
@@ -52,3 +52,4 @@ use App\Http\Controllers\UserController;
 // });
 Route::post('/register',[UserController::class,'register']);
 Route::post('/login',[UserController::class,'login']);
+Route::get('/students/search/{city}',[StudentController::class,'Search']);
