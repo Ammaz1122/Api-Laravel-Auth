@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\ResendVerification;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,10 +47,30 @@ use App\Http\Controllers\UserController;
         
         Route::post('/logout',[UserController::class,'logout']);
 
-        });
+                
+
+        
+ 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+$request->fulfill();
+ 
+    //return redirect('/home');
+})->name('verification.verify');
+
+
+Route::post('/email/verification-notification',[ResendVerification::class,'Resend']);
+
+
+
+});
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 Route::post('/register',[UserController::class,'register']);
 Route::post('/login',[UserController::class,'login']);
 Route::get('/students/search/{city}',[StudentController::class,'Search']);
+
+// verfication Email
+
+
+
