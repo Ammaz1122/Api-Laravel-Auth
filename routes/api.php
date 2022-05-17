@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\ResendVerification;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -70,7 +72,16 @@ Route::post('/register',[UserController::class,'register']);
 Route::post('/login',[UserController::class,'login']);
 Route::get('/students/search/{city}',[StudentController::class,'Search']);
 
+Route::post('/forgot-password',[NewPasswordController::class,'forgot']);
 // verfication Email
+
+
+//Route::post('reset-password',[RestPassword::class,'reset']);
+Route::post('reset-password',[ResetPasswordController::class,'reset']);
+
+Route::get('/reset-password/{token}', function ($token) {
+        return view('auth.reset-password', ['token' => $token]);
+    })->middleware('guest')->name('password.reset');
 
 
 
